@@ -1,3 +1,6 @@
+# ignore build
+dist/
+
 # Created by https://www.gitignore.io/api/vim,git,node
 # Edit at https://www.gitignore.io/?templates=vim,git,node
 
@@ -78,6 +81,7 @@ typings/
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
+console.log(store.getState())
 .cache
 
 # next.js build output
