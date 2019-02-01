@@ -6,14 +6,17 @@ import { createStore } from 'redux'
 import { counter } from './counter'
 
 const store = createStore(counter)
+const increment = () => store.dispatch({ type: 'INCREMENT' })
 
-console.log(store.getState())
-store.dispatch({ type: 'INCREMENT' })
-console.log(store.getState())
-ReactDOM.render(
-  <div>
-    <div>ToDo</div>
+const render = () => {
+  ReactDOM.render(
+    <div>
+      <div>{store.getState()}</div>
+        <button onClick={increment}>+</button>
+    </div>,
+    document.getElementById('app')
+  )
+}
 
-  </div>,
-  document.getElementById('app')
-)
+store.subscribe(render)
+render()
