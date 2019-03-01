@@ -1,46 +1,46 @@
 import {
-  counter,
+  counters,
   addCounter,
   removeCounter,
   incrementCounter,
   decrementCounter
 } from './counter'
 
-describe('counter', () => {
+describe('counters', () => {
   it('increments 0 to 1', () => {
     expect(
-      counter(0, {type: 'INCREMENT'})
-    ).toEqual(1)
+      counters([0], {type: 'INCREMENT', index: 0})
+    ).toEqual([1])
   })
 
   it('increments 1 to 2', () => {
     expect(
-      counter(1, {type: 'INCREMENT'})
-    ).toEqual(2)
+      counters([1], {type: 'INCREMENT', index: 0})
+    ).toEqual([2])
   })
 
   it('decrements 2 to 1', () => {
     expect(
-      counter(2, {type: 'DECREMENT'})
-    ).toEqual(1)
+      counters([2], {type: 'DECREMENT', index: 0})
+    ).toEqual([1])
   })
 
   it('decrements 1 to 0', () => {
     expect(
-      counter(1, {type: 'DECREMENT'})
-    ).toEqual(0)
+      counters([1], {type: 'DECREMENT', index: 0})
+    ).toEqual([0])
   })
 
   it('ignores other actions', () => {
     expect(
-      counter(1, {type: 'SOMETHING_ELSE'})
-    ).toEqual(1)
+      counters([1], {type: 'SOMETHING_ELSE'})
+    ).toEqual([1])
   })
 
-  it('defaults to 0', () => {
+  it('defaults to empty', () => {
     expect(
-      counter(undefined, {})
-    ).toEqual(0)
+      counters(undefined, {})
+    ).toEqual([])
   })
 })
 

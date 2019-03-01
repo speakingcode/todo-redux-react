@@ -1,9 +1,13 @@
-export const counter = (state = 0, action) => {
+export const counters = (state = [], action) => {
   switch (action.type) {
     case 'INCREMENT':
-      return state + 1
+      return incrementCounter(state, action.index)
     case 'DECREMENT':
-      return state - 1
+      return decrementCounter(state, action.index)
+    case 'REMOVE':
+      return removeCounter(state, action.index)
+    case 'ADD':
+      return addCounter(state)
     default:
       return state
   }
