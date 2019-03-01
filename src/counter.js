@@ -12,3 +12,10 @@ export const counter = (state = 0, action) => {
 export const addCounter = (list) => {
   return [...list, 0]
 }
+
+export const removeCounter = (list, index) => {
+  return [
+    ...list.slice(0, index),
+    ...list.slice(index+1)
+  ]
+}

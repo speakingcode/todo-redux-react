@@ -1,6 +1,7 @@
 import {
   counter,
-  addCounter
+  addCounter,
+  removeCounter
 } from './counter'
 
 describe('counter', () => {
@@ -48,6 +49,17 @@ describe('addCounter', () => {
 
     expect(
       addCounter(listBefore)
+    ).toEqual(listAfter)
+  })
+})
+
+describe('removeCounter', () => {
+  it('removes a Counter', () => {
+    const listBefore = [0, 10, 20]
+    const listAfter = [0, 20]
+
+    expect(
+      removeCounter(listBefore, 1)
     ).toEqual(listAfter)
   })
 })
