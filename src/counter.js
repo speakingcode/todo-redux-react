@@ -10,6 +10,5 @@ export const counter = (state = 0, action) => {
 }
 
 export const addCounter = (list) => {
-  list.push(0)
-  return list
+  return list.concat([0])
 }
