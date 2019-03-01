@@ -1,4 +1,7 @@
-import { counter } from './counter'
+import {
+  counter,
+  addCounter
+} from './counter'
 
 describe('counter', () => {
   it('increments 0 to 1', () => {
@@ -35,5 +38,16 @@ describe('counter', () => {
     expect(
       counter(undefined, {})
     ).toEqual(0)
+  })
+})
+
+describe('addCounter', () => {
+  it('adds a Counter', () => {
+    const listBefore = []
+    const listAfter = [0]
+
+    expect(
+      addCounter(listBefore)
+    ).toEqual(listAfter)
   })
 })
