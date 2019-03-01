@@ -7,17 +7,29 @@ import { counter } from './counter'
 
 const store = createStore(counter)
 const increment = () => store.dispatch({ type: 'INCREMENT' })
-const decrement = () => store.dispatch({ type: 'DECRENEBT' })
+const decrement = () => store.dispatch({ type: 'DECREMENT' })
 
-const Counter = ({ value }) => (
-  <h1>{value}</h1>
+const Counter = ({
+  value,
+  onIncrement,
+  onDecrement
+}) => (
+  <div>
+    <h1>{value}</h1>
+    <button onClick={onIncrement}>+</button>
+    <button onClick={onDecrement}>-</button>
+  </div>
 )
 
 const render = () => {
   ReactDOM.render(
     <div>
-      <Counter value={store.getState()}></Counter>
-      <button onClick={increment}>+</button>
+      <Counter
+        value={store.getState()}
+        onIncrement={increment}
+        onDecrement={decrement}
+      >
+      </Counter>
     </div>,
     document.getElementById('app')
   )
