@@ -1,11 +1,11 @@
 import React            from 'react'
 import ReactDOM         from 'react-dom'
 
-import { createStore }  from 'redux'
+//import { createStore }  from 'redux'
+import {createStore }   from './store'
+import { counters }     from './counter'
 
-import { counter }      from './counter'
-
-const store = createStore(counter)
+const store = createStore(counters)
 const increment = index =>
   store.dispatch({ type: 'INCREMENT', index })
 const decrement = index =>
