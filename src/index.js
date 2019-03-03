@@ -9,7 +9,7 @@ import { counters }     from './counter'
 import App              from './App'
 
 
-const store     = createStore(counters)
+const store  = createStore(counters)
 
 const render = () => {
   const counters = store.getState()
