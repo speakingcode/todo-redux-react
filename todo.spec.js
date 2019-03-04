@@ -31,7 +31,8 @@ describe ('todo', () => {
       const stateAfter  = [
         {
           id: 0,
-          text: 'Learn Redux'
+          text: 'Learn Redux',
+          completed: false
         }
       ]
 

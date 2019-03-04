@@ -6,7 +6,8 @@ export const todos = (state = [], action) => {
         ...state,
         {
           id,
-          text
+          text,
+          completed: false
         }
       ]
     default:
