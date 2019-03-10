@@ -1,10 +1,28 @@
 import {
   todos,
+  addTodo,
   toggleTodo
 } from './todo'
 
 describe ('todo', () => {
-  describe('toggleTodo', () => {
+  describe('addTodo()', () => {
+    it('adds a todo', () => {
+      const todosBefore = []
+      const todosAfter = [
+        {
+          id: 0,
+          text: 'Learn Redux',
+          completed: false
+        }
+      ]
+
+      expect(
+        addTodo(todosBefore, {id: 0, text: 'Learn Redux'})
+      ).toEqual(todosAfter)
+    })
+  })
+
+  describe('toggleTodo()', () => {
     it('toggles a todo', () => {
       const todoBefore = {
         id: 0,
