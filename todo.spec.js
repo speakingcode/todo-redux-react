@@ -18,46 +18,32 @@ describe ('todo', () => {
       ]
 
       expect(
-        addTodo(todosBefore, {id: 0, text: 'Learn Redux'})
+        addTodo(todosBefore, {id: 0, text: 'Learn Redux', completed: false})
       ).toEqual(todosAfter)
     })
   })
 
   describe('toggleTodoById()', () => {
     it('toggles a todo with matching id', () => {
-      const todosBefore = [
-        {
+      const todoBefore = {
           id: 0,
           text: 'Learn Redux',
           completed: false
-        },
-        {
-          id: 1,
-          text: 'Go Shopping',
-          completed: false
-        },
-      ]
+        }
 
-      const todosAfter = [
-        {
+      const todoAfter = {
           id: 0,
           text: 'Learn Redux',
           completed: true
-        },
-        {
-          id: 1,
-          text: 'Go Shopping',
-          completed: false
-        },
-      ]
+        }
 
       expect(
-        toggleTodoById(todosBefore, 0)
-      ).toEqual(todosAfter)
+        toggleTodoById(todoBefore, 0)
+      ).toEqual(todoAfter)
 
       expect(
-        toggleTodoById(todosAfter, 0)
-      ).toEqual(todosBefore)
+        toggleTodoById(todoAfter, 0)
+      ).toEqual(todoBefore)
     })
   })
 
