@@ -1,7 +1,8 @@
 import {
   todos,
   addTodo,
-  toggleTodo
+  toggleTodo,
+  toggleTodoById
 } from './todo'
 
 describe ('todo', () => {
@@ -19,6 +20,44 @@ describe ('todo', () => {
       expect(
         addTodo(todosBefore, {id: 0, text: 'Learn Redux'})
       ).toEqual(todosAfter)
+    })
+  })
+
+  describe('toggleTodoById()', () => {
+    it('toggles a todo with matching id', () => {
+      const todosBefore = [
+        {
+          id: 0,
+          text: 'Learn Redux',
+          completed: false
+        },
+        {
+          id: 1,
+          text: 'Go Shopping',
+          completed: false
+        },
+      ]
+
+      const todosAfter = [
+        {
+          id: 0,
+          text: 'Learn Redux',
+          completed: true
+        },
+        {
+          id: 1,
+          text: 'Go Shopping',
+          completed: false
+        },
+      ]
+
+      expect(
+        toggleTodoById(todosBefore, 0)
+      ).toEqual(todosAfter)
+
+      expect(
+        toggleTodoById(todosAfter, 0)
+      ).toEqual(todosBefore)
     })
   })
 
@@ -40,6 +79,9 @@ describe ('todo', () => {
         toggleTodo(todoBefore)
       ).toEqual(todoAfter)
 
+      expect(
+        toggleTodo(todoAfter)
+      ).toEqual(todoBefore)
     })
   })
 
@@ -58,6 +100,33 @@ describe ('todo', () => {
         type: 'ADD_TODO',
         id: 0,
         text: 'Learn Redux'
+      }
+
+      expect(
+        todos(stateBefore, action)
+      ).toEqual(stateAfter)
+    })
+
+    it('toggles a todo', () => {
+      const stateBefore  = [
+        {
+          id: 0,
+          text: 'Learn Redux',
+          completed: false
+        }
+      ]
+
+      const stateAfter  = [
+        {
+          id: 0,
+          text: 'Learn Redux',
+          completed: true
+        }
+      ]
+
+      const action = {
+        type: 'TOGGLE_TODO',
+        id: 0
       }
 
       expect(
