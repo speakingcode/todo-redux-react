@@ -1,22 +1,22 @@
-import React            from 'react'
-import ReactDOM         from 'react-dom'
+import React              from 'react'
+import ReactDOM           from 'react-dom'
 
 //import { createStore }  from 'redux'
-import { createStore }  from './store'
+import { createStore }    from './store'
 
 
-import { counters }     from './counter'
-import App              from './App'
+import { todoAppReducer } from './todoAppReducer'
+import TodoApp            from './TodoApp'
 
 
-const store  = createStore(counters)
+const store  = createStore(todoAppReducer)
 
 const render = () => {
-  const counters = store.getState()
-  console.log(counters)
+  const todos = store.getState()
+  console.log(todos)
 
   ReactDOM.render(
-    <App store={store} />,
+    <TodoApp dispatch={store.dispatch} todos={store.getState().todos} />,
     document.getElementById('app')
   )
 }
