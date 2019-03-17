@@ -1,5 +1,6 @@
 import React            from 'react'
 
+import { Todo }         from './Todo'
 import { FilterLink }   from './FilterLink'
 
 let nextTodoId = 0
@@ -48,25 +49,8 @@ const App = ({todos, todoFilter, dispatch}) => {
       </button>
       <ul>
         {visibleTodos.map(todo =>
-          <li
-            key={todo.id}
-            onClick={() => {
-              dispatch({
-                type: 'TOGGLE_TODO',
-                id: todo.id
-              })
-            }}
-
-          style={{
-            textDecoration:
-              todo.completed ?
-                'line-through' :
-                'none'
-          }}
-        >
-          {todo.text}
-        </li>
-      )}
+          <Todo todo={todo} dispatch={dispatch} />
+        )}
       </ul>
       <p>
         Show:
