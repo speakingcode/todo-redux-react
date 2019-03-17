@@ -40,6 +40,7 @@ const App = ({todos, todoFilter, dispatch}) => {
             text: input.value,
             id: nextTodoId++
           })
+          input.value = ''
         }}
 
       >
@@ -72,16 +73,19 @@ const App = ({todos, todoFilter, dispatch}) => {
         {' '}
       {filters.map(filter => (
         <FilterLink
-          dispatch={dispatch}
-          filter={filter}
+          dispatch      ={dispatch}
+          filter        ={filter}
+          currentFilter ={todoFilter}
         >
+            {
+              //trim 'SHOW_'
+            }
             {filter.slice(5)}
-
         </FilterLink>
       ))}
       </p>
-  </div>
-)
+    </div>
+  )
 }
 
 export default App

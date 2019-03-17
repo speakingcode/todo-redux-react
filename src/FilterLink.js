@@ -2,9 +2,13 @@ import React from 'react'
 
 export const FilterLink = ({
   filter,
+  currentFilter,
   dispatch,
   children
 }) => (
+  filter === currentFilter
+  ? <span>{children}</span>
+  :
   <a
     href="#"
     onClick={
