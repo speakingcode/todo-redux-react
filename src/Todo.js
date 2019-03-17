@@ -1,22 +1,20 @@
 import React from 'react'
 
-export const Todo = ({todo, dispatch}) => (
+export const Todo = ({
+  completed,
+  text,
+  onClick,
+}) => (
   <li
-    key={todo.id}
-    onClick={() => {
-      dispatch({
-        type: 'TOGGLE_TODO',
-        id: todo.id
-      })
-    }}
+    onClick={onClick}
 
     style={{
       textDecoration:
-        todo.completed ?
+        completed ?
           'line-through' :
           'none'
     }}
   >
-    {todo.text}
+    {text}
   </li>
 )

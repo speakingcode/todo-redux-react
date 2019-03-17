@@ -1,6 +1,6 @@
 import React            from 'react'
 
-import { Todo }         from './Todo'
+import { TodoList }     from './TodoList'
 import { FilterLink }   from './FilterLink'
 
 let nextTodoId = 0
@@ -47,11 +47,15 @@ const App = ({todos, todoFilter, dispatch}) => {
       >
         Add Todo
       </button>
-      <ul>
-        {visibleTodos.map(todo =>
-          <Todo todo={todo} dispatch={dispatch} />
-        )}
-      </ul>
+      <TodoList
+        todos       ={visibleTodos}
+        onTodoClick ={id => {
+          dispatch({
+            type: 'TOGGLE_TODO',
+            id
+          })
+        }}
+      />
       <p>
         Show:
         {' '}
