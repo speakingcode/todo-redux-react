@@ -1,10 +1,31 @@
 import React            from 'react'
 
+import { FilterLink }   from './FilterLink'
 
 let nextTodoId = 0
 
-const App = ({todos, dispatch}) => {
+const filters = [
+  'SHOW_ALL',
+  'SHOW_ACTIVE',
+  'SHOW_COMPLETED'
+]
 
+export const getVisibleTodos = (
+  todos,
+  filter
+) => {
+  switch(filter) {
+    case 'SHOW_ALL':
+      return todos
+    case 'SHOW_COMPLETED':
+      return todos.filter(t => t.completed)
+    case 'SHOW_ACTIVE':
+      return todos.filter(t => !t.completed)
+  }
+}
+const App = ({todos, todoFilter, dispatch}) => {
+
+  let visibleTodos = getVisibleTodos(todos, todoFilter)
   let input
 
   return(
@@ -25,7 +46,7 @@ const App = ({todos, dispatch}) => {
         Add Todo
       </button>
       <ul>
-        {todos.map(todo =>
+        {visibleTodos.map(todo =>
           <li
             key={todo.id}
             onClick={() => {
@@ -35,19 +56,32 @@ const App = ({todos, dispatch}) => {
               })
             }}
 
-            style={{
-              textDecoration:
-                todo.completed ?
-                  'line-through' :
-                  'none'
-            }}
-          >
-            {todo.text}
-          </li>
-        )}
+          style={{
+            textDecoration:
+              todo.completed ?
+                'line-through' :
+                'none'
+          }}
+        >
+          {todo.text}
+        </li>
+      )}
       </ul>
-    </div>
-  )
+      <p>
+        Show:
+        {' '}
+      {filters.map(filter => (
+        <FilterLink
+          dispatch={dispatch}
+          filter={filter}
+        >
+            {filter.slice(5)}
+
+        </FilterLink>
+      ))}
+      </p>
+  </div>
+)
 }
 
 export default App

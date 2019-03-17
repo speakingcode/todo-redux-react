@@ -16,7 +16,11 @@ const render = () => {
   console.log(todos)
 
   ReactDOM.render(
-    <TodoApp dispatch={store.dispatch} todos={store.getState().todos} />,
+    <TodoApp
+      dispatch={store.dispatch}
+      todos={store.getState().todos}
+      todoFilter={store.getState().todoFilter}
+    />,
     document.getElementById('app')
   )
 }
