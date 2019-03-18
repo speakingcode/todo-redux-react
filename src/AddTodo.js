@@ -1,4 +1,8 @@
-export const AddTodo = () => {
+import React from 'react'
+
+export const AddTodo = ({
+  onAddClick
+}) => {
   let input
 
   return(
@@ -8,14 +12,9 @@ export const AddTodo = () => {
       }} />
       <button
         onClick={() => {
-          dispatch({
-            type: 'ADD_TODO',
-            text: input.value,
-            id: nextTodoId++
-          })
+          onAddClick(input.value)
           input.value = ''
         }}
-
       >
         Add Todo
       </button>

@@ -1,15 +1,10 @@
 import React            from 'react'
 
+import { AddTodo  }     from './AddTodo'
 import { TodoList }     from './TodoList'
-import { FilterLink }   from './FilterLink'
+import { Footer   }     from './Footer'
 
 let nextTodoId = 0
-
-const filters = [
-  'SHOW_ALL',
-  'SHOW_ACTIVE',
-  'SHOW_COMPLETED'
-]
 
 export const getVisibleTodos = (
   todos,
@@ -24,29 +19,22 @@ export const getVisibleTodos = (
       return todos.filter(t => !t.completed)
   }
 }
-const App = ({todos, todoFilter, dispatch}) => {
 
+const App = ({todos, todoFilter, dispatch}) => {
   let visibleTodos = getVisibleTodos(todos, todoFilter)
-  let input
 
   return(
     <div>
-      <input ref={node => {
-        input = node
-      }} />
-      <button
-        onClick={() => {
+      <AddTodo
+        onAddClick={text => {
           dispatch({
             type: 'ADD_TODO',
-            text: input.value,
+            text,
             id: nextTodoId++
           })
-          input.value = ''
         }}
+      />
 
-      >
-        Add Todo
-      </button>
       <TodoList
         todos       ={visibleTodos}
         onTodoClick ={id => {
@@ -56,22 +44,15 @@ const App = ({todos, todoFilter, dispatch}) => {
           })
         }}
       />
-      <p>
-        Show:
-        {' '}
-      {filters.map(filter => (
-        <FilterLink
-          dispatch      ={dispatch}
-          filter        ={filter}
-          currentFilter ={todoFilter}
-        >
-            {
-              //trim 'SHOW_'
-            }
-            {filter.slice(5)}
-        </FilterLink>
-      ))}
-      </p>
+
+      <Footer
+        onFilterClick={filter => {
+          dispatch({
+           type: 'SET_TODO_FILTER',
+           filter
+          })
+        }}
+      />
     </div>
   )
 }

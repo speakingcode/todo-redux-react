@@ -3,7 +3,7 @@ import React from 'react'
 export const FilterLink = ({
   filter,
   currentFilter,
-  dispatch,
+  onClick,
   children
 }) => (
   filter === currentFilter
@@ -14,10 +14,7 @@ export const FilterLink = ({
     onClick={
       e => {
         e.preventDefault()
-        dispatch({
-         type: 'SET_TODO_FILTER',
-         filter
-        })
+        onClick(filter)
       }
     }
   >
