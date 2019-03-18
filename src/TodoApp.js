@@ -20,10 +20,7 @@ export const getVisibleTodos = (
   }
 }
 
-const App = ({todos, todoFilter, dispatch}) => {
-  let visibleTodos = getVisibleTodos(todos, todoFilter)
-
-  return(
+const App = ({todos, todoFilter, dispatch}) =>
     <div>
       <AddTodo
         onAddClick={text => {
@@ -36,8 +33,14 @@ const App = ({todos, todoFilter, dispatch}) => {
       />
 
       <TodoList
-        todos       ={visibleTodos}
-        onTodoClick ={id => {
+        todos={
+          getVisibleTodos(
+            todos,
+            todoFilter
+          )
+        }
+
+        onTodoClick={id => {
           dispatch({
             type: 'TOGGLE_TODO',
             id
@@ -54,7 +57,5 @@ const App = ({todos, todoFilter, dispatch}) => {
         }}
       />
     </div>
-  )
-}
 
 export default App
