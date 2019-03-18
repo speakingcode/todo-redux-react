@@ -1,4 +1,4 @@
-import { getVisibleTodos } from './TodoApp.js'
+import { getVisibleTodos } from './VisibleTodoList.js'
 
 describe('getVisibleTodos()', () => {
   const todosBefore = [
