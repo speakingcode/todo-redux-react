@@ -17,7 +17,7 @@ const render = () => {
 
   ReactDOM.render(
     <TodoApp
-      dispatch={store.dispatch}
+      store={store}
       {...store.getState()}
     />,
     document.getElementById('app')

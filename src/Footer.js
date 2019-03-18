@@ -9,17 +9,15 @@ const filters = [
 ]
 
 export const Footer = ({
-  todoFilter,
-  onFilterClick
+  store
 }) =>
       <p>
         Show:
         {' '}
       {filters.map(filter => (
         <FilterLink
-          filter        ={filter}
-          onClick       ={onFilterClick}
-          currentFilter ={todoFilter}
+          filter={filter}
+          store ={store}
         >
             {
               //trim 'SHOW_'

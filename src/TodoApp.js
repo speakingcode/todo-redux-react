@@ -20,11 +20,11 @@ export const getVisibleTodos = (
   }
 }
 
-const App = ({todos, todoFilter, dispatch}) =>
+const App = ({todos, todoFilter, store}) =>
     <div>
       <AddTodo
         onAddClick={text => {
-          dispatch({
+          store.dispatch({
             type: 'ADD_TODO',
             text,
             id: nextTodoId++
@@ -41,20 +41,15 @@ const App = ({todos, todoFilter, dispatch}) =>
         }
 
         onTodoClick={id => {
-          dispatch({
+          store.dispatch({
             type: 'TOGGLE_TODO',
             id
           })
         }}
       />
 
-      <Footer
-        onFilterClick={filter => {
-          dispatch({
-           type: 'SET_TODO_FILTER',
-           filter
-          })
-        }}
+        <Footer
+          store={store}
       />
     </div>
 
